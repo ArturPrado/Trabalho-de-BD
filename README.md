@@ -72,23 +72,10 @@ Popular com dados iniciais
 Utilizar as views e procedures criadas
 
 📝 Observações
-Projeto desenvolvido para AV3 de Banco de Dados
+Projeto do Pradinho desenvolvido para AV3 de Banco de Dados
 
 Modelo normalizado até 3FN
 
 Compatível com MySQL 8.0+
 
-text
 
-Este README.md contém:
-- Identificação clara do projeto
-- Contextualização do problema
-- Documentação da estrutura do banco
-- Exemplos práticos de consultas
-- Espaço dedicado para imagens (basta remover os comentários e adicionar os arquivos)
-- Instruções básicas de uso
-
-Você pode complementar com:
-- Capturas do diagrama no Workbench
-- Prints dos resultados das consultas
-- Exemplos adicionais de uso
