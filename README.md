@@ -63,7 +63,7 @@ GROUP BY cat.Categoria;
 🖼️ Prints do Sistema
 (Espaço reservado para imagens do diagrama e resultados de consultas)
 
-<img src="query1.png" alt="print da query">
+<img src="/assets/query1.png" alt="print da query">
 
 ⚙️ Como Utilizar
 Executar scripts SQL na ordem de criação
