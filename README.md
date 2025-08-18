@@ -42,16 +42,22 @@ FROM Pedidos p
 JOIN Mesas m ON p.MesaID = m.MesaID
 LEFT JOIN Clientes c ON p.ClienteID = c.ClienteID
 WHERE p.Status = 'Aberto';
-2. Itens Mais Vendidos
-sql
+```
+![Resultado Query 1 - Pedidos em Aberto](/assets/query1.png)
+
+### 2. Itens Mais Vendidos
+```sql
 SELECT c.Nome, SUM(ip.Quantidade) AS TotalVendido
 FROM ItensPedido ip
 JOIN Cardapio c ON ip.ItemID = c.ItemID
 GROUP BY c.ItemID
 ORDER BY TotalVendido DESC
 LIMIT 5;
-3. Faturamento por Categoria
-sql
+```
+![Resultado Query 2 - Itens Mais Vendidos](/assets/query2.png)
+
+### 3. Faturamento por Categoria
+```sql
 SELECT cat.Categoria, 
        SUM(ip.Quantidade * ip.PrecoUnitario) AS Faturamento
 FROM (
@@ -60,12 +66,67 @@ FROM (
 ) cat
 JOIN ItensPedido ip ON cat.ItemID = ip.ItemID
 GROUP BY cat.Categoria;
-🖼️ Prints do Sistema
-(Espaço reservado para imagens do diagrama e resultados de consultas)
+```
+![Resultado Query 3 - Faturamento por Categoria](/assets/query3.png)
 
-<img src="/assets/query1.png" alt="print da query">
+### 4. Clientes Frequentes
+```sql
+SELECT c.Nome, COUNT(p.PedidoID) AS TotalPedidos,
+       SUM(p.Total) AS ValorTotal
+FROM Clientes c
+JOIN Pedidos p ON c.ClienteID = p.ClienteID
+GROUP BY c.ClienteID
+ORDER BY TotalPedidos DESC
+LIMIT 5;
+```
+![Resultado Query 4 - Clientes Frequentes](/assets/query4.png)
 
-⚙️ Como Utilizar
+### 5. Mesas Mais Utilizadas
+```sql
+SELECT m.Numero, COUNT(p.PedidoID) AS TotalUsos,
+       SUM(p.Total) AS FaturamentoTotal
+FROM Mesas m
+JOIN Pedidos p ON m.MesaID = p.MesaID
+GROUP BY m.MesaID
+ORDER BY TotalUsos DESC
+LIMIT 5;
+```
+![Resultado Query 5 - Mesas Mais Utilizadas](/assets/query5.png)
+
+### 6. Funcionários com Mais Vendas
+```sql
+SELECT f.Nome, f.Cargo, COUNT(p.PedidoID) AS TotalAtendimentos,
+       SUM(p.Total) AS ValorVendido
+FROM Funcionarios f
+JOIN Pedidos p ON f.FuncionarioID = p.FuncionarioID
+GROUP BY f.FuncionarioID
+ORDER BY TotalAtendimentos DESC
+LIMIT 5;
+```
+![Resultado Query 6 - Funcionários com Mais Vendas](/assets/query6.png)
+
+### 7. Horários de Pico
+```sql
+SELECT 
+    CASE 
+        WHEN HOUR(p.DataHora) BETWEEN 6 AND 11 THEN 'Manhã'
+        WHEN HOUR(p.DataHora) BETWEEN 12 AND 17 THEN 'Tarde'
+        ELSE 'Noite'
+    END AS Periodo,
+    COUNT(*) AS TotalPedidos,
+    SUM(p.Total) AS Faturamento
+FROM Pedidos p
+GROUP BY Periodo
+ORDER BY TotalPedidos DESC;
+```
+![Resultado Query 7 - Horários de Pico](/assets/query7.png)
+
+## 🖼️ Diagrama do Banco de Dados
+
+### Modelo Entidade-Relacionamento
+![Diagrama ER - RestauranteDB](/restauranteDB.png)
+
+## ⚙️ Como Utilizar
 Executar scripts SQL na ordem de criação
 
 Popular com dados iniciais
