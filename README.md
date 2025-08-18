@@ -63,7 +63,8 @@ GROUP BY cat.Categoria;
 🖼️ Prints do Sistema
 (Espaço reservado para imagens do diagrama e resultados de consultas)
 
-<!-- Exemplo de como inserir imagens posteriormente: ![Diagrama ER](caminho/para/imagem.png) ![Resultado Consulta](caminho/para/consulta.png) -->
+<img src="query1.png" alt="print da query">
+
 ⚙️ Como Utilizar
 Executar scripts SQL na ordem de criação
 
